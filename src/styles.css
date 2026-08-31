@@ -1,17 +1,19 @@
 :root {
   color: #171717;
-  background: #f4eddf;
+  background: #f7ead6;
   font-family: "Archivo", Arial, sans-serif;
   font-synthesis: none;
   --ink: #171717;
-  --paper: #f4eddf;
-  --paper-bright: #fffaf0;
-  --orange: #f24a1d;
-  --orange-dark: #c53710;
-  --blue: #1287b7;
-  --yellow: #f0b400;
-  --red: #d82f26;
-  --green: #9ccb67;
+  --paper: #f7ead6;
+  --paper-bright: #fff3de;
+  --orange: #e54821;
+  --orange-dark: #a82e14;
+  --aqua: #a7e8e5;
+  --aqua-dark: #2b7a78;
+  --blue: #2b7a78;
+  --yellow: #f2b63d;
+  --red: #e54821;
+  --green: #a7e8e5;
   --header-height: 108px;
   --paper-texture: url("/assets/paper-texture.webp");
   --ink-texture: url("/assets/ink-texture.webp");
@@ -92,7 +94,7 @@ p {
   background-image: var(--ink-texture);
   background-size: 620px;
   color: #fff;
-  border-bottom: 8px solid var(--orange);
+  border-bottom: 8px solid var(--aqua);
 }
 
 .brand-link,
@@ -129,7 +131,7 @@ p {
 .desktop-nav a:focus-visible,
 .header-socials a:hover,
 .header-socials a:focus-visible {
-  color: var(--orange);
+  color: var(--aqua);
   transform: translateY(-2px);
 }
 
@@ -143,7 +145,7 @@ p {
   width: 42px;
   height: 42px;
   place-items: center;
-  border: 2px solid #fff;
+  border: 2px solid var(--aqua);
   border-radius: 50%;
 }
 
@@ -255,7 +257,7 @@ p {
 
 .button-primary {
   background: var(--orange);
-  color: #fff;
+  color: var(--ink);
 }
 
 .button-primary:hover,
@@ -266,6 +268,11 @@ p {
 .button-secondary {
   background: var(--paper-bright);
   color: var(--ink);
+}
+
+.button-secondary:hover,
+.button-secondary:focus-visible {
+  background: var(--aqua);
 }
 
 .hero-media {
@@ -353,14 +360,14 @@ p {
 }
 
 .pathway-icon.blue {
-  background: var(--blue);
-  color: #fff;
+  background: var(--aqua);
+  color: var(--ink);
   transform: rotate(3deg);
 }
 
 .pathway-icon.red {
   background: var(--red);
-  color: #fff;
+  color: var(--ink);
   transform: rotate(-3deg);
 }
 
@@ -672,7 +679,7 @@ p {
   background-image: var(--ink-texture);
   background-size: 640px 640px;
   color: #fff;
-  border-top: 8px solid var(--orange);
+  border-top: 8px solid var(--aqua);
 }
 
 .site-footer .brand-logo {
@@ -701,7 +708,7 @@ p {
 }
 
 :focus-visible {
-  outline: 4px solid var(--blue);
+  outline: 4px solid var(--aqua-dark);
   outline-offset: 4px;
 }
 
@@ -784,8 +791,8 @@ p {
     place-items: center;
     padding: 0;
     background: transparent;
-    color: #fff;
-    border: 3px solid #fff;
+    color: var(--aqua);
+    border: 3px solid var(--aqua);
     cursor: pointer;
   }
 
@@ -807,7 +814,7 @@ p {
     background-color: var(--ink);
     background-image: var(--ink-texture);
     background-size: 620px;
-    border-bottom: 8px solid var(--orange);
+    border-bottom: 8px solid var(--aqua);
     transition: max-height 220ms ease, visibility 220ms ease;
   }
 
@@ -834,8 +841,8 @@ p {
 
   .mobile-nav a:hover,
   .mobile-nav a:focus-visible {
-    background: var(--orange);
-    color: #fff;
+    background: var(--aqua);
+    color: var(--ink);
   }
 
   .mobile-nav svg {

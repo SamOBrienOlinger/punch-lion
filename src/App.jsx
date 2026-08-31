@@ -195,7 +195,7 @@ export function App() {
               <span>people together</span>
             </h1>
             <p className="hero-summary">
-              Live events, kids’ comedy and creative workshops across Ireland.
+              Bespoke live experiences brought to life.
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#live-comedy">
