@@ -2,9 +2,9 @@
 
 A responsive redesign of the Punch Lion website, built around the original Punch Lion identity and authentic event photography.
 
-## Live review site
+## Live site
 
-https://punch-lion-redesign.samobo.chatgpt.site
+https://samobrienolinger.github.io/punch-lion/
 
 ## Features
 
@@ -30,6 +30,9 @@ npm run build
 npm run test:sites
 ```
 
+GitHub Pages deploys automatically from `main` using the workflow in
+`.github/workflows/deploy-pages.yml`.
+
 ## Technology
 
 - React 19
@@ -40,4 +43,3 @@ npm run test:sites
 ## Image sources
 
 The logo is the original Punch Lion brand asset. Event and workshop photographs were selected from the supplied [Punch Lion Instagram profile](https://www.instagram.com/punch_lion/).
-
