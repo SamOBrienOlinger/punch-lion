@@ -12,6 +12,8 @@ import {
   X,
 } from "@phosphor-icons/react";
 
+const assetUrl = (fileName) => `${import.meta.env.BASE_URL}assets/${fileName}`;
+
 const navItems = [
   { label: "Events", href: "#live-comedy" },
   { label: "Kids Comedy", href: "#kids-comedy" },
@@ -52,7 +54,7 @@ const programmes = [
     eyebrow: "For young audiences",
     title: "Kids Comedy",
     text: "Creative comedy experiences that invite children to laugh, join in and discover their own comic voice.",
-    image: "/assets/kids-comedy.webp",
+    image: assetUrl("kids-comedy.webp"),
     alt: "A child laughing at a Punch Lion outdoor comedy event.",
     imagePosition: "50% 44%",
     linkLabel: "Explore kids comedy",
@@ -62,7 +64,7 @@ const programmes = [
     eyebrow: "For communities",
     title: "Live Events",
     text: "Welcoming comedy events for festivals, venues and communities across Ireland, shaped around each audience.",
-    image: "/assets/hero-live-event.webp",
+    image: assetUrl("hero-live-event.webp"),
     alt: "Families gathered on the grass for a Punch Lion outdoor stage event.",
     imagePosition: "50% 42%",
     linkLabel: "Discover live events",
@@ -72,7 +74,7 @@ const programmes = [
     eyebrow: "For groups and teams",
     title: "Workshops",
     text: "Practical, energetic sessions where humour supports confidence, connection, storytelling and creative thinking.",
-    image: "/assets/workshop-group.webp",
+    image: assetUrl("workshop-group.webp"),
     alt: "A Punch Lion workshop with facilitators presenting to a relaxed group.",
     imagePosition: "50% 48%",
     linkLabel: "Plan a workshop",
@@ -83,7 +85,7 @@ function BrandLogo({ className = "" }) {
   return (
     <img
       className={`brand-logo ${className}`}
-      src="/assets/punch-lion-logo.png"
+      src={assetUrl("punch-lion-logo.png")}
       alt="Punch Lion"
       width="486"
       height="348"
@@ -209,7 +211,7 @@ export function App() {
 
           <figure className="hero-media">
             <img
-              src="/assets/hero-auditorium.webp"
+              src={assetUrl("hero-auditorium.webp")}
               alt="A performer on stage before a full audience at a Punch Lion comedy event."
               width="480"
               height="640"
@@ -274,7 +276,7 @@ export function App() {
         <section className="corporate-section" id="corporate" aria-labelledby="corporate-title">
           <div className="corporate-photo">
             <img
-              src="/assets/workshop.webp"
+              src={assetUrl("workshop.webp")}
               alt="A smiling Punch Lion facilitator beside a workshop board."
               width="480"
               height="600"
