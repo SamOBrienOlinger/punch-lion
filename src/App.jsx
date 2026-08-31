@@ -85,10 +85,10 @@ function BrandLogo({ className = "" }) {
   return (
     <img
       className={`brand-logo ${className}`}
-      src={assetUrl("punch-lion-logo.png")}
+      src={assetUrl("punch-lion-logo.jpeg")}
       alt="Punch Lion"
-      width="486"
-      height="348"
+      width="682"
+      height="577"
     />
   );
 }

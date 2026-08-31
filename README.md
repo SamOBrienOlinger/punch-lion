@@ -8,7 +8,7 @@ https://samobrienolinger.github.io/punch-lion/
 
 ## Features
 
-- Original Punch Lion logo used consistently in the header and footer
+- Supplied Punch Lion logo used consistently in the header, footer, and browser icon
 - Responsive desktop, tablet, and mobile layouts
 - Carefully positioned hero photography with breakpoint-specific crops
 - Authentic Punch Lion event and workshop imagery
