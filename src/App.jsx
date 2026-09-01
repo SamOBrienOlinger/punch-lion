@@ -188,15 +188,12 @@ export function App() {
       <main id="main-content">
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="kicker">Live comedy · Kids · Workshops</p>
+            <p className="kicker">Bespoke live experiences brought to life.</p>
             <h1 className="hero-title" id="hero-title">
-              <span>Comedy</span>
-              <span className="orange">that brings</span>
+              <span className="experiences">Experiences</span>
+              <span className="orange">that bring</span>
               <span>people together</span>
             </h1>
-            <p className="hero-summary">
-              Bespoke live experiences brought to life.
-            </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#live-comedy">
                 See upcoming events

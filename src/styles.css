@@ -214,13 +214,6 @@ p {
   line-height: 1.02;
 }
 
-.hero-summary {
-  max-width: 620px;
-  margin-bottom: 34px;
-  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
-  line-height: 1.5;
-}
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -713,9 +706,10 @@ p {
 }
 
 @media (min-width: 1181px) {
-  .hero-title span:first-child {
-    font-size: 1.4em;
-    line-height: 0.78;
+  .hero-title .experiences {
+    font-size: 0.95em;
+    line-height: 0.86;
+    letter-spacing: -0.055em;
   }
 
   .hero-title .orange {
@@ -967,11 +961,6 @@ p {
     font-size: clamp(3.15rem, 14vw, 5rem);
     line-height: 0.92;
     letter-spacing: -0.035em;
-  }
-
-  .hero-summary {
-    margin-bottom: 28px;
-    font-size: 1rem;
   }
 
   .hero-actions {
