@@ -178,7 +178,16 @@ p {
   padding: clamp(50px, 6vw, 94px) clamp(30px, 5vw, 78px);
 }
 
-.kicker,
+.kicker {
+  max-width: 38rem;
+  margin-bottom: 24px;
+  color: var(--orange-dark);
+  font-size: clamp(0.98rem, 1.15vw, 1.1rem);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+}
+
 .section-kicker {
   margin-bottom: 20px;
   color: var(--orange-dark);
@@ -189,13 +198,13 @@ p {
 }
 
 .hero-title {
-  max-width: 810px;
-  margin-bottom: 30px;
+  max-width: 760px;
+  margin-bottom: 32px;
   font-family: "Permanent Marker", "Arial Black", sans-serif;
-  font-size: clamp(3.8rem, 6.2vw, 7rem);
+  font-size: clamp(3.7rem, 5.9vw, 6.6rem);
   font-weight: 400;
-  line-height: 0.88;
-  letter-spacing: -0.045em;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
   text-transform: uppercase;
 }
 
@@ -204,7 +213,7 @@ p {
 }
 
 .hero-title span:last-child {
-  font-size: 0.85em;
+  font-size: 0.82em;
   white-space: nowrap;
 }
 
@@ -217,7 +226,11 @@ p {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 16px;
+}
+
+.hero-actions .button {
+  min-width: 238px;
 }
 
 .button {
@@ -707,14 +720,14 @@ p {
 
 @media (min-width: 1181px) {
   .hero-title .experiences {
-    font-size: 0.95em;
-    line-height: 0.86;
+    font-size: 0.92em;
+    line-height: 0.9;
     letter-spacing: -0.055em;
   }
 
   .hero-title .orange {
-    font-size: 0.9em;
-    line-height: 0.94;
+    font-size: 0.86em;
+    line-height: 0.98;
   }
 }
 
@@ -857,13 +870,22 @@ p {
   }
 
   .hero-title {
-    max-width: 720px;
-    font-size: clamp(4.4rem, 11vw, 7.2rem);
+    max-width: 680px;
+    font-size: clamp(4rem, 10.5vw, 6.8rem);
+    line-height: 0.9;
+  }
+
+  .hero-title .experiences {
+    font-size: 0.9em;
+  }
+
+  .hero-title .orange {
+    font-size: 0.82em;
   }
 
   .hero-title span:last-child {
-    font-size: 1em;
-    white-space: normal;
+    font-size: 0.78em;
+    white-space: nowrap;
   }
 
   .hero-media {
@@ -947,23 +969,41 @@ p {
   }
 
   .hero-copy {
-    padding: 58px 22px 52px;
+    padding: 50px 22px 46px;
   }
 
-  .kicker,
+  .kicker {
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
   .section-kicker {
     margin-bottom: 15px;
     font-size: 0.95rem;
   }
 
   .hero-title {
-    margin-bottom: 24px;
-    font-size: clamp(3.15rem, 14vw, 5rem);
-    line-height: 0.92;
-    letter-spacing: -0.035em;
+    margin-bottom: 28px;
+    font-size: clamp(2.75rem, 12vw, 4.4rem);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+
+  .hero-title .experiences {
+    font-size: 1em;
+  }
+
+  .hero-title .orange {
+    font-size: 0.88em;
+  }
+
+  .hero-title span:last-child {
+    font-size: 0.82em;
   }
 
   .hero-actions {
+    gap: 14px;
     flex-direction: column;
     align-items: stretch;
   }
@@ -1117,7 +1157,11 @@ p {
 
 @media (max-width: 390px) {
   .hero-title {
-    font-size: 3rem;
+    font-size: clamp(2.55rem, 12vw, 2.85rem);
+  }
+
+  .hero-title span:last-child {
+    font-size: 0.78em;
   }
 
   .hero-media {
