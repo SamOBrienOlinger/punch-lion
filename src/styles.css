@@ -178,16 +178,6 @@ p {
   padding: clamp(50px, 6vw, 94px) clamp(30px, 5vw, 78px);
 }
 
-.kicker {
-  max-width: 38rem;
-  margin-bottom: 24px;
-  color: var(--orange-dark);
-  font-size: clamp(0.98rem, 1.15vw, 1.1rem);
-  font-weight: 700;
-  line-height: 1.45;
-  letter-spacing: -0.015em;
-}
-
 .section-kicker {
   margin-bottom: 20px;
   color: var(--orange-dark);
@@ -210,6 +200,15 @@ p {
 
 .hero-title span {
   display: block;
+}
+
+.hero-title .hero-title-intro {
+  margin-bottom: 0.38em;
+  color: var(--orange-dark);
+  font-family: "Bebas Neue", Impact, sans-serif;
+  font-size: clamp(1.2rem, 1.75vw, 1.75rem);
+  line-height: 1;
+  letter-spacing: 0.14em;
 }
 
 .hero-title span:last-child {
@@ -970,12 +969,6 @@ p {
 
   .hero-copy {
     padding: 50px 22px 46px;
-  }
-
-  .kicker {
-    margin-bottom: 18px;
-    font-size: 0.95rem;
-    line-height: 1.4;
   }
 
   .section-kicker {

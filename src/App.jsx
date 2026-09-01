@@ -188,11 +188,11 @@ export function App() {
       <main id="main-content">
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="kicker">Bespoke live experiences brought to life.</p>
             <h1 className="hero-title" id="hero-title">
-              <span className="experiences">Experiences</span>
-              <span className="orange">that bring</span>
-              <span>people together</span>
+              <span className="hero-title-intro">BESPOKE LIVE</span>
+              <span className="experiences">EXPERIENCES</span>
+              <span className="orange">THAT BRING</span>
+              <span>PEOPLE TOGETHER</span>
             </h1>
             <div className="hero-actions">
               <a className="button button-primary" href="#live-comedy">
