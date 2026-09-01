@@ -106,9 +106,8 @@ p {
 }
 
 .brand-logo {
-  width: 100%;
+  width: auto;
   height: 88px;
-  object-fit: contain;
   border: 1px solid var(--orange);
 }
 
