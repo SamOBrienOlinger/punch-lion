@@ -200,26 +200,22 @@ p {
 
 .hero-title span {
   display: block;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
 }
 
 .hero-title .hero-title-intro {
-  margin-bottom: 0.38em;
+  margin-bottom: 0;
   color: var(--orange-dark);
-  font-family: "Bebas Neue", Impact, sans-serif;
-  font-size: clamp(1.2rem, 1.75vw, 1.75rem);
-  line-height: 1;
-  letter-spacing: 0.14em;
 }
 
 .hero-title span:last-child {
-  font-size: 0.82em;
   white-space: nowrap;
 }
 
 .hero-title .orange {
   color: var(--orange);
-  font-size: 0.78em;
-  line-height: 1.02;
 }
 
 .hero-actions {
@@ -717,19 +713,6 @@ p {
   outline-offset: 4px;
 }
 
-@media (min-width: 1181px) {
-  .hero-title .experiences {
-    font-size: 0.92em;
-    line-height: 0.9;
-    letter-spacing: 0.01em;
-  }
-
-  .hero-title .orange {
-    font-size: 0.86em;
-    line-height: 0.98;
-  }
-}
-
 @media (max-width: 1180px) {
   :root {
     --header-height: 96px;
@@ -759,10 +742,6 @@ p {
 
   .hero-copy {
     padding-inline: clamp(34px, 5vw, 72px);
-  }
-
-  .hero-title span:last-child {
-    font-size: 0.8em;
   }
 
   .pathway {
@@ -874,19 +853,6 @@ p {
     line-height: 0.9;
   }
 
-  .hero-title .experiences {
-    font-size: 0.9em;
-  }
-
-  .hero-title .orange {
-    font-size: 0.82em;
-  }
-
-  .hero-title span:last-child {
-    font-size: 0.78em;
-    white-space: nowrap;
-  }
-
   .hero-media {
     min-height: 590px;
     border-top: 12px solid var(--orange);
@@ -980,19 +946,7 @@ p {
     margin-bottom: 28px;
     font-size: clamp(2.75rem, 12vw, 4.4rem);
     line-height: 0.9;
-    letter-spacing: -0.04em;
-  }
-
-  .hero-title .experiences {
-    font-size: 1em;
-  }
-
-  .hero-title .orange {
-    font-size: 0.88em;
-  }
-
-  .hero-title span:last-child {
-    font-size: 0.82em;
+    letter-spacing: 0.01em;
   }
 
   .hero-actions {
@@ -1151,10 +1105,6 @@ p {
 @media (max-width: 390px) {
   .hero-title {
     font-size: clamp(2.55rem, 12vw, 2.85rem);
-  }
-
-  .hero-title span:last-child {
-    font-size: 0.78em;
   }
 
   .hero-media {
