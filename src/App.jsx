@@ -475,23 +475,6 @@ export function App() {
           </div>
         </section>
 
-        <section className="about-section" id="about" aria-labelledby="about-title">
-          <div>
-            <p className="section-kicker">About Punch Lion</p>
-            <h2 id="about-title">Experiences made around people</h2>
-          </div>
-          <div className="about-copy">
-            <p>
-              Punch Lion produces and promotes live events, comedy experiences and
-              creative workshops for children, communities and organisations.
-            </p>
-            <p>
-              From booking performers to shaping the atmosphere in the room, every
-              experience is built to help people laugh, participate and connect.
-            </p>
-          </div>
-        </section>
-
         <section className="partners-section" aria-labelledby="partners-title">
           <div className="partners-heading">
             <p className="section-kicker">Great company</p>
@@ -535,6 +518,23 @@ export function App() {
                 </p>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section className="about-section" id="about" aria-labelledby="about-title">
+          <div>
+            <p className="section-kicker">About Punch Lion</p>
+            <h2 id="about-title">Experiences made around people</h2>
+          </div>
+          <div className="about-copy">
+            <p>
+              Punch Lion produces and promotes live events, comedy experiences and
+              creative workshops for children, communities and organisations.
+            </p>
+            <p>
+              From booking performers to shaping the atmosphere in the room, every
+              experience is built to help people laugh, participate and connect.
+            </p>
           </div>
         </section>
 
