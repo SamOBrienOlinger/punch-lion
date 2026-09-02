@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowSquareOut,
   FacebookLogo,
   Handshake,
   InstagramLogo,
   List,
   MicrophoneStage,
+  PaperPlaneTilt,
+  Pause,
+  Play,
   Quotes,
   Smiley,
   UsersThree,
@@ -16,7 +20,7 @@ import {
 const assetUrl = (fileName) => `${import.meta.env.BASE_URL}assets/${fileName}`;
 
 const navItems = [
-  { label: "Events", href: "#live-comedy" },
+  { label: "Events", href: "#events" },
   { label: "Kids Comedy", href: "#kids-comedy" },
   { label: "Workshops", href: "#workshops" },
   { label: "Corporate", href: "#corporate" },
@@ -51,33 +55,33 @@ const pathways = [
 
 const programmes = [
   {
+    id: "live-events",
+    eyebrow: "For communities",
+    title: "Live Events",
+    text: "Welcoming comedy events for festivals, venues and communities across Ireland, shaped around each audience.",
+    image: assetUrl("event-participation.webp"),
+    alt: "Children joining in with a Punch Lion performer at a live outdoor event.",
+    imagePosition: "50% 48%",
+    linkLabel: "Plan a live event",
+  },
+  {
     id: "kids-comedy",
     eyebrow: "For young audiences",
     title: "Kids Comedy",
     text: "Creative comedy experiences that invite children to laugh, join in and discover their own comic voice.",
-    image: assetUrl("kids-comedy.webp"),
-    alt: "A child laughing at a Punch Lion outdoor comedy event.",
-    imagePosition: "50% 44%",
+    image: assetUrl("event-kids-audience.webp"),
+    alt: "Children and families watching a Punch Lion comedy performance under a festival tent.",
+    imagePosition: "50% 50%",
     linkLabel: "Explore kids comedy",
-  },
-  {
-    id: "live-comedy",
-    eyebrow: "For communities",
-    title: "Live Events",
-    text: "Welcoming comedy events for festivals, venues and communities across Ireland, shaped around each audience.",
-    image: assetUrl("hero-live-event.webp"),
-    alt: "Families gathered on the grass for a Punch Lion outdoor stage event.",
-    imagePosition: "50% 42%",
-    linkLabel: "Discover live events",
   },
   {
     id: "workshops",
     eyebrow: "For groups and teams",
     title: "Workshops",
     text: "Practical, energetic sessions where humour supports confidence, connection, storytelling and creative thinking.",
-    image: assetUrl("workshop-group.webp"),
-    alt: "A Punch Lion workshop with facilitators presenting to a relaxed group.",
-    imagePosition: "50% 48%",
+    image: assetUrl("creative-workshop.webp"),
+    alt: "A Punch Lion facilitator leading an energetic creative workshop.",
+    imagePosition: "38% 50%",
     linkLabel: "Plan a workshop",
   },
 ];
@@ -89,6 +93,8 @@ const carouselSlides = [
     eyebrow: "Live events",
     title: "Big moments shared together",
     position: "50% 42%",
+    width: 480,
+    height: 320,
   },
   {
     image: assetUrl("kids-comedy.webp"),
@@ -96,6 +102,8 @@ const carouselSlides = [
     eyebrow: "Kids comedy",
     title: "Laughter for every generation",
     position: "50% 44%",
+    width: 640,
+    height: 427,
   },
   {
     image: assetUrl("workshop-group.webp"),
@@ -103,13 +111,8 @@ const carouselSlides = [
     eyebrow: "Creative workshops",
     title: "Confidence built through play",
     position: "50% 48%",
-  },
-  {
-    image: assetUrl("hero-auditorium.webp"),
-    alt: "A performer on stage before a full Punch Lion audience.",
-    eyebrow: "On stage",
-    title: "Experiences that fill the room",
-    position: "50% 39%",
+    width: 570,
+    height: 640,
   },
 ];
 
@@ -134,13 +137,37 @@ const testimonials = [
 ];
 
 const partners = [
-  { name: "Office of Public Works", mark: "OPW" },
-  { name: "Irish Rugby Football Union", mark: "IRFU" },
-  { name: "The Ark", mark: "ARK" },
-  { name: "Electric Picnic", mark: "EP" },
-  { name: "Body & Soul", mark: "B&S" },
-  { name: "Hullabaloo! Children’s Arts Festival", mark: "H!" },
-  { name: "Fighting Words", mark: "FW" },
+  {
+    name: "Office of Public Works",
+    logo: "partners/opw.png",
+    href: "https://www.gov.ie/en/office-of-public-works/",
+  },
+  {
+    name: "Irish Rugby Football Union",
+    logo: "partners/irfu.svg",
+    href: "https://www.irishrugby.ie/",
+  },
+  { name: "The Ark", logo: "partners/the-ark.png", href: "https://ark.ie/" },
+  {
+    name: "Electric Picnic",
+    logo: "partners/electric-picnic.svg",
+    href: "https://www.electricpicnic.ie/",
+  },
+  {
+    name: "Body & Soul",
+    logo: "partners/body-and-soul.png",
+    href: "https://bodyandsoul.ie/",
+  },
+  {
+    name: "Hullabaloo! Children’s Arts Festival",
+    logo: "partners/hullabaloo.jpg",
+    href: "https://www.hullabaloofestival.ie/",
+  },
+  {
+    name: "Fighting Words",
+    logo: "partners/fighting-words.svg",
+    href: "https://www.fightingwords.ie/",
+  },
 ];
 
 function BrandLogo({ className = "" }) {
@@ -159,6 +186,7 @@ export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [carouselPaused, setCarouselPaused] = useState(false);
+  const [carouselEngaged, setCarouselEngaged] = useState(false);
 
   useEffect(() => {
     const closeOnEscape = (event) => {
@@ -210,14 +238,14 @@ export function App() {
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    if (prefersReducedMotion || carouselPaused) return undefined;
+    if (prefersReducedMotion || carouselPaused || carouselEngaged) return undefined;
 
     const timer = window.setInterval(() => {
       setCarouselIndex((current) => (current + 1) % carouselSlides.length);
     }, 5500);
 
     return () => window.clearInterval(timer);
-  }, [carouselPaused]);
+  }, [carouselEngaged, carouselPaused]);
 
   const closeMenu = () => setMenuOpen(false);
   const previousSlide = () => {
@@ -227,6 +255,22 @@ export function App() {
   };
   const nextSlide = () => {
     setCarouselIndex((current) => (current + 1) % carouselSlides.length);
+  };
+  const handleContactSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const experience = formData.get("experience");
+    const subject = `Punch Lion enquiry — ${experience}`;
+    const body = [
+      `Name: ${formData.get("name")}`,
+      `Email: ${formData.get("email")}`,
+      `Experience: ${experience}`,
+      "",
+      formData.get("message"),
+    ].join("\n");
+
+    window.location.href = `mailto:hello@punchlion.ie?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
   const currentSlide = carouselSlides[carouselIndex];
 
@@ -312,7 +356,7 @@ export function App() {
               <span>PEOPLE TOGETHER</span>
             </h1>
             <div className="hero-actions">
-              <a className="button button-primary" href="#live-comedy">
+              <a className="button button-primary" href="#events">
                 See events
                 <ArrowRight weight="bold" aria-hidden="true" />
               </a>
@@ -325,13 +369,13 @@ export function App() {
 
           <figure className="hero-media image-reveal">
             <img
-              src={assetUrl("hero-auditorium.webp")}
-              alt="A performer on stage before a full audience at a Punch Lion comedy event."
-              width="480"
-              height="640"
+              src={assetUrl("creative-workshop.webp")}
+              alt="A Punch Lion facilitator bringing energy and humour to a creative workshop."
+              width="1274"
+              height="1274"
               fetchPriority="high"
             />
-            <figcaption>Real Punch Lion events, photographed across Ireland.</figcaption>
+            <figcaption>Real Punch Lion experiences, photographed in Ireland.</figcaption>
           </figure>
         </section>
 
@@ -365,18 +409,18 @@ export function App() {
             role="region"
             aria-roledescription="carousel"
             aria-label="Punch Lion experiences"
-            onMouseEnter={() => setCarouselPaused(true)}
-            onMouseLeave={() => setCarouselPaused(false)}
-            onFocusCapture={() => setCarouselPaused(true)}
-            onBlurCapture={() => setCarouselPaused(false)}
+            onMouseEnter={() => setCarouselEngaged(true)}
+            onMouseLeave={() => setCarouselEngaged(false)}
+            onFocusCapture={() => setCarouselEngaged(true)}
+            onBlurCapture={() => setCarouselEngaged(false)}
           >
             <figure className="carousel-slide" key={currentSlide.image}>
               <img
                 src={currentSlide.image}
                 alt={currentSlide.alt}
                 style={{ objectPosition: currentSlide.position }}
-                width="1440"
-                height="760"
+                width={currentSlide.width}
+                height={currentSlide.height}
               />
               <figcaption>
                 <span>{currentSlide.eyebrow}</span>
@@ -388,11 +432,24 @@ export function App() {
               <button type="button" onClick={previousSlide} aria-label="Show previous image">
                 <ArrowLeft weight="bold" aria-hidden="true" />
               </button>
-              <span aria-live="polite">
+              <span aria-live="off">
                 {carouselIndex + 1} / {carouselSlides.length}
               </span>
               <button type="button" onClick={nextSlide} aria-label="Show next image">
                 <ArrowRight weight="bold" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                className="carousel-playback"
+                onClick={() => setCarouselPaused((current) => !current)}
+                aria-label={carouselPaused ? "Play automatic slideshow" : "Pause automatic slideshow"}
+                aria-pressed={carouselPaused}
+              >
+                {carouselPaused ? (
+                  <Play weight="fill" aria-hidden="true" />
+                ) : (
+                  <Pause weight="fill" aria-hidden="true" />
+                )}
               </button>
             </div>
 
@@ -411,7 +468,11 @@ export function App() {
           </div>
         </section>
 
-        <section className="programme-section" aria-labelledby="programme-title">
+        <section
+          className="programme-section"
+          id="events"
+          aria-labelledby="programme-title"
+        >
           <div className="section-heading">
             <h2 id="programme-title">Made for real people, in real rooms</h2>
             <p>
@@ -419,6 +480,33 @@ export function App() {
               experience is built around its audience.
             </p>
           </div>
+
+          <aside className="events-note" aria-label="Public event information">
+            <div>
+              <p className="events-note-label">Public event dates</p>
+              <strong>See new dates as soon as they’re announced.</strong>
+              <p>
+                Punch Lion shares confirmed public events on Instagram. Planning your
+                own festival, community or private event? Send the date, location and
+                audience details for a tailored conversation.
+              </p>
+            </div>
+            <div className="events-note-actions">
+              <a
+                className="button button-primary"
+                href="https://www.instagram.com/punch_lion/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                View event updates
+                <InstagramLogo weight="bold" aria-hidden="true" />
+              </a>
+              <a className="text-link" href="#contact">
+                Plan an event
+                <ArrowRight weight="bold" aria-hidden="true" />
+              </a>
+            </div>
+          </aside>
 
           <div className="programme-grid">
             {programmes.map((programme) => (
@@ -428,8 +516,8 @@ export function App() {
                     src={programme.image}
                     alt={programme.alt}
                     style={{ objectPosition: programme.imagePosition }}
-                    width="640"
-                    height="520"
+                    width="1274"
+                    height="1274"
                     loading="lazy"
                   />
                 </div>
@@ -486,11 +574,22 @@ export function App() {
           </div>
           <ul className="partners-grid" aria-label="Punch Lion friends and partners">
             {partners.map((partner) => (
-              <li className="partner-card" key={partner.name}>
-                <span className="partner-mark" aria-hidden="true">
-                  {partner.mark}
-                </span>
-                <strong>{partner.name}</strong>
+              <li key={partner.name}>
+                <a
+                  className="partner-card"
+                  href={partner.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`${partner.name} website (opens in a new tab)`}
+                >
+                  <span className="partner-logo" aria-hidden="true">
+                    <img src={assetUrl(partner.logo)} alt="" loading="lazy" />
+                  </span>
+                  <strong>
+                    {partner.name}
+                    <ArrowSquareOut weight="bold" aria-hidden="true" />
+                  </strong>
+                </a>
               </li>
             ))}
           </ul>
@@ -539,15 +638,13 @@ export function App() {
         </section>
 
         <section className="contact-section" id="contact" aria-labelledby="contact-title">
-          <div>
+          <div className="contact-intro">
             <p className="section-kicker">Have an idea?</p>
             <h2 id="contact-title">Let’s make something happen</h2>
-          </div>
-          <div className="contact-actions">
-            <a className="button button-primary" href="mailto:hello@punchlion.ie">
-              Send us a message
-              <ArrowRight weight="bold" aria-hidden="true" />
-            </a>
+            <p>
+              Tell us who it’s for, where it’s happening and what you want people to
+              feel. We’ll take it from there.
+            </p>
             <a
               className="text-link"
               href="https://www.instagram.com/punch_lion/"
@@ -558,6 +655,47 @@ export function App() {
               <InstagramLogo weight="bold" aria-hidden="true" />
             </a>
           </div>
+          <form className="contact-form" onSubmit={handleContactSubmit}>
+            <div className="form-row">
+              <label htmlFor="contact-name">Name</label>
+              <input id="contact-name" name="name" type="text" autoComplete="name" required />
+            </div>
+            <div className="form-row">
+              <label htmlFor="contact-email">Email</label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+              />
+            </div>
+            <div className="form-row">
+              <label htmlFor="contact-experience">Experience type</label>
+              <select id="contact-experience" name="experience" defaultValue="" required>
+                <option value="" disabled>
+                  Choose one
+                </option>
+                <option>Live event</option>
+                <option>Kids comedy</option>
+                <option>Creative workshop</option>
+                <option>Corporate experience</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div className="form-row">
+              <label htmlFor="contact-message">Tell us what you’re planning</label>
+              <textarea id="contact-message" name="message" rows="5" required />
+            </div>
+            <button className="button button-primary" type="submit">
+              Send us a message
+              <PaperPlaneTilt weight="bold" aria-hidden="true" />
+            </button>
+            <p className="form-note">
+              This opens your email app with the details filled in. Nothing is stored
+              on this website.
+            </p>
+          </form>
         </section>
       </main>
 
@@ -566,7 +704,7 @@ export function App() {
           <BrandLogo />
         </a>
         <div className="footer-copy">
-          <p>Creative comedy ideas for kids, communities and organisations.</p>
+          <p>Bespoke live experiences for children, communities and organisations.</p>
           <span>© {new Date().getFullYear()} Punch Lion</span>
         </div>
         <div className="footer-links">
