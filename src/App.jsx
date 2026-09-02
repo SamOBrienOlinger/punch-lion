@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  ArrowLeft,
   ArrowRight,
   FacebookLogo,
   Handshake,
@@ -81,6 +82,57 @@ const programmes = [
   },
 ];
 
+const carouselSlides = [
+  {
+    image: assetUrl("hero-live-event.webp"),
+    alt: "Families gathered outdoors for a Punch Lion live comedy event.",
+    eyebrow: "Live events",
+    title: "Big moments shared together",
+    position: "50% 42%",
+  },
+  {
+    image: assetUrl("kids-comedy.webp"),
+    alt: "A child laughing during a Punch Lion comedy event.",
+    eyebrow: "Kids comedy",
+    title: "Laughter for every generation",
+    position: "50% 44%",
+  },
+  {
+    image: assetUrl("workshop-group.webp"),
+    alt: "A group taking part in a lively Punch Lion workshop.",
+    eyebrow: "Creative workshops",
+    title: "Confidence built through play",
+    position: "50% 48%",
+  },
+  {
+    image: assetUrl("hero-auditorium.webp"),
+    alt: "A performer on stage before a full Punch Lion audience.",
+    eyebrow: "On stage",
+    title: "Experiences that fill the room",
+    position: "50% 39%",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "A few years ago, I read a book by Freud on jokes. I didn’t smile, even when I finished it. I’m told that your jokes summer camp was a good deal more successful.",
+    name: "Roddy Doyle",
+    role: "Co-Founder and Chair, Fighting Words",
+  },
+  {
+    quote:
+      "Mark and Peter were excellent hosts and facilitators. I took a group of friends and colleagues to this workshop and everyone loved it. They removed the doubts and fears by making the improv fun and exciting.",
+    name: "Workshop participant",
+    role: "Punch Lion improv workshop",
+  },
+  {
+    quote: "It was awesome, cool and it was the funniest show I saw in my life.",
+    name: "Young audience member",
+    role: "Punch Lion kids comedy",
+  },
+];
+
 function BrandLogo({ className = "" }) {
   return (
     <img
@@ -95,6 +147,8 @@ function BrandLogo({ className = "" }) {
 
 export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [carouselPaused, setCarouselPaused] = useState(false);
 
   useEffect(() => {
     const closeOnEscape = (event) => {
@@ -141,7 +195,30 @@ export function App() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion || carouselPaused) return undefined;
+
+    const timer = window.setInterval(() => {
+      setCarouselIndex((current) => (current + 1) % carouselSlides.length);
+    }, 5500);
+
+    return () => window.clearInterval(timer);
+  }, [carouselPaused]);
+
   const closeMenu = () => setMenuOpen(false);
+  const previousSlide = () => {
+    setCarouselIndex((current) =>
+      current === 0 ? carouselSlides.length - 1 : current - 1,
+    );
+  };
+  const nextSlide = () => {
+    setCarouselIndex((current) => (current + 1) % carouselSlides.length);
+  };
+  const currentSlide = carouselSlides[carouselIndex];
 
   return (
     <>
@@ -263,6 +340,63 @@ export function App() {
           ))}
         </section>
 
+        <section className="carousel-section" aria-labelledby="carousel-title">
+          <div className="carousel-heading">
+            <p className="section-kicker">Punch Lion in action</p>
+            <h2 id="carousel-title">See what we bring to life</h2>
+          </div>
+
+          <div
+            className="carousel-shell"
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Punch Lion experiences"
+            onMouseEnter={() => setCarouselPaused(true)}
+            onMouseLeave={() => setCarouselPaused(false)}
+            onFocusCapture={() => setCarouselPaused(true)}
+            onBlurCapture={() => setCarouselPaused(false)}
+          >
+            <figure className="carousel-slide" key={currentSlide.image}>
+              <img
+                src={currentSlide.image}
+                alt={currentSlide.alt}
+                style={{ objectPosition: currentSlide.position }}
+                width="1440"
+                height="760"
+              />
+              <figcaption>
+                <span>{currentSlide.eyebrow}</span>
+                <strong>{currentSlide.title}</strong>
+              </figcaption>
+            </figure>
+
+            <div className="carousel-controls">
+              <button type="button" onClick={previousSlide} aria-label="Show previous image">
+                <ArrowLeft weight="bold" aria-hidden="true" />
+              </button>
+              <span aria-live="polite">
+                {carouselIndex + 1} / {carouselSlides.length}
+              </span>
+              <button type="button" onClick={nextSlide} aria-label="Show next image">
+                <ArrowRight weight="bold" aria-hidden="true" />
+              </button>
+            </div>
+
+            <div className="carousel-dots" aria-label="Choose an image">
+              {carouselSlides.map((slide, index) => (
+                <button
+                  type="button"
+                  className={index === carouselIndex ? "is-active" : ""}
+                  onClick={() => setCarouselIndex(index)}
+                  aria-label={`Show image ${index + 1}: ${slide.eyebrow}`}
+                  aria-current={index === carouselIndex ? "true" : undefined}
+                  key={slide.image}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="programme-section" aria-labelledby="programme-title">
           <div className="section-heading">
             <h2 id="programme-title">Made for real people, in real rooms</h2>
@@ -328,21 +462,23 @@ export function App() {
         </section>
 
         <section className="quote-section" id="about" aria-labelledby="about-title">
-          <div className="quote-mark" aria-hidden="true">
-            <Quotes weight="fill" />
+          <div className="testimonial-heading">
+            <p className="section-kicker">Testimonials</p>
+            <h2 id="about-title">What people remember</h2>
           </div>
-          <div>
-            <p className="section-kicker">What people say</p>
-            <h2 id="about-title">A generous kind of funny</h2>
-            <blockquote>
-              “A few years ago, I read a book by Freud on jokes. I didn’t smile, even
-              when I finished it. I’m told that your jokes summer camp was a good deal
-              more successful.”
-            </blockquote>
-            <p className="quote-credit">
-              <strong>Roddy Doyle</strong>
-              <span>Co-Founder and Chair, Fighting Words</span>
-            </p>
+          <div className="testimonial-grid">
+            {testimonials.map((testimonial) => (
+              <article className="testimonial-card" key={testimonial.name}>
+                <span className="quote-mark" aria-hidden="true">
+                  <Quotes weight="fill" />
+                </span>
+                <blockquote>“{testimonial.quote}”</blockquote>
+                <p className="quote-credit">
+                  <strong>{testimonial.name}</strong>
+                  <span>{testimonial.role}</span>
+                </p>
+              </article>
+            ))}
           </div>
         </section>
 
