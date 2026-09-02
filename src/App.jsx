@@ -220,18 +220,17 @@ export function App() {
         <section className="hero" id="top" aria-labelledby="hero-title">
           <div className="hero-copy">
             <h1 className="hero-title" id="hero-title">
-              <span className="hero-title-intro">BESPOKE LIVE</span>
-              <span className="experiences">EXPERIENCES</span>
+              <span className="hero-title-intro">BESPOKE EXPERIENCES</span>
               <span className="orange">THAT BRING</span>
               <span>PEOPLE TOGETHER</span>
             </h1>
             <div className="hero-actions">
               <a className="button button-primary" href="#live-comedy">
-                See upcoming events
+                See events
                 <ArrowRight weight="bold" aria-hidden="true" />
               </a>
               <a className="button button-secondary" href="#contact">
-                Book a workshop
+                Start your experience with Punch Lion
                 <ArrowRight weight="bold" aria-hidden="true" />
               </a>
             </div>
