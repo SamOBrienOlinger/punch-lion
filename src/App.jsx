@@ -16,12 +16,12 @@ import {
 const assetUrl = (fileName) => `${import.meta.env.BASE_URL}assets/${fileName}`;
 
 const navItems = [
-  { label: "Events", href: "#live-comedy" },
+  { label: "Live Events", href: "#live-comedy" },
   { label: "Kids Comedy", href: "#kids-comedy" },
   { label: "Workshops", href: "#workshops" },
   { label: "Corporate", href: "#corporate" },
-  { label: "Comedians", href: "#about" },
-  { label: "About", href: "#about" },
+  { label: "In Action", href: "#in-action" },
+  { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -340,7 +340,11 @@ export function App() {
           ))}
         </section>
 
-        <section className="carousel-section" aria-labelledby="carousel-title">
+        <section
+          className="carousel-section"
+          id="in-action"
+          aria-labelledby="carousel-title"
+        >
           <div className="carousel-heading">
             <p className="section-kicker">Punch Lion in action</p>
             <h2 id="carousel-title">See what we bring to life</h2>
@@ -461,10 +465,14 @@ export function App() {
           </div>
         </section>
 
-        <section className="quote-section" id="about" aria-labelledby="about-title">
+        <section
+          className="quote-section"
+          id="testimonials"
+          aria-labelledby="testimonials-title"
+        >
           <div className="testimonial-heading">
             <p className="section-kicker">Testimonials</p>
-            <h2 id="about-title">What people remember</h2>
+            <h2 id="testimonials-title">What people remember</h2>
           </div>
           <div className="testimonial-grid">
             {testimonials.map((testimonial) => (
