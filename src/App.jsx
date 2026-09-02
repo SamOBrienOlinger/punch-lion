@@ -16,12 +16,12 @@ import {
 const assetUrl = (fileName) => `${import.meta.env.BASE_URL}assets/${fileName}`;
 
 const navItems = [
-  { label: "Live Events", href: "#live-comedy" },
+  { label: "Events", href: "#live-comedy" },
   { label: "Kids Comedy", href: "#kids-comedy" },
   { label: "Workshops", href: "#workshops" },
   { label: "Corporate", href: "#corporate" },
-  { label: "In Action", href: "#in-action" },
   { label: "Testimonials", href: "#testimonials" },
+  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -462,6 +462,23 @@ export function App() {
               Start a conversation
               <ArrowRight weight="bold" aria-hidden="true" />
             </a>
+          </div>
+        </section>
+
+        <section className="about-section" id="about" aria-labelledby="about-title">
+          <div>
+            <p className="section-kicker">About Punch Lion</p>
+            <h2 id="about-title">Experiences made around people</h2>
+          </div>
+          <div className="about-copy">
+            <p>
+              Punch Lion produces and promotes live events, comedy experiences and
+              creative workshops for children, communities and organisations.
+            </p>
+            <p>
+              From booking performers to shaping the atmosphere in the room, every
+              experience is built to help people laugh, participate and connect.
+            </p>
           </div>
         </section>
 
