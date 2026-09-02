@@ -110,6 +110,37 @@ export function App() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const revealElements = document.querySelectorAll(".image-reveal");
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      revealElements.forEach((element) => element.classList.add("is-visible"));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.16,
+        rootMargin: "0px 0px -6% 0px",
+      },
+    );
+
+    revealElements.forEach((element) => observer.observe(element));
+
+    return () => observer.disconnect();
+  }, []);
+
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -206,7 +237,7 @@ export function App() {
             </div>
           </div>
 
-          <figure className="hero-media">
+          <figure className="hero-media image-reveal">
             <img
               src={assetUrl("hero-auditorium.webp")}
               alt="A performer on stage before a full audience at a Punch Lion comedy event."
@@ -246,7 +277,7 @@ export function App() {
           <div className="programme-grid">
             {programmes.map((programme) => (
               <article className="programme-card" id={programme.id} key={programme.title}>
-                <div className="programme-image">
+                <div className="programme-image image-reveal">
                   <img
                     src={programme.image}
                     alt={programme.alt}
@@ -271,7 +302,7 @@ export function App() {
         </section>
 
         <section className="corporate-section" id="corporate" aria-labelledby="corporate-title">
-          <div className="corporate-photo">
+          <div className="corporate-photo image-reveal">
             <img
               src={assetUrl("workshop.webp")}
               alt="A smiling Punch Lion facilitator beside a workshop board."
