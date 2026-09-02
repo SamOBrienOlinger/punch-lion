@@ -349,11 +349,11 @@ export function App() {
         <section className="contact-section" id="contact" aria-labelledby="contact-title">
           <div>
             <p className="section-kicker">Have an idea?</p>
-            <h2 id="contact-title">Let’s make something funny happen</h2>
+            <h2 id="contact-title">Let’s make something happen</h2>
           </div>
           <div className="contact-actions">
             <a className="button button-primary" href="mailto:hello@punchlion.ie">
-              Email Punch Lion
+              Send us a message
               <ArrowRight weight="bold" aria-hidden="true" />
             </a>
             <a
