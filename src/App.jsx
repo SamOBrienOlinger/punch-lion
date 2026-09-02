@@ -265,7 +265,6 @@ export function App() {
 
         <section className="programme-section" aria-labelledby="programme-title">
           <div className="section-heading">
-            <p className="section-kicker">Pick your kind of funny</p>
             <h2 id="programme-title">Made for real people, in real rooms</h2>
             <p>
               From a child’s first comedy show to a room full of colleagues, every
