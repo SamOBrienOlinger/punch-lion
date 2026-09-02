@@ -133,6 +133,16 @@ const testimonials = [
   },
 ];
 
+const partners = [
+  { name: "Office of Public Works", mark: "OPW" },
+  { name: "Irish Rugby Football Union", mark: "IRFU" },
+  { name: "The Ark", mark: "ARK" },
+  { name: "Electric Picnic", mark: "EP" },
+  { name: "Body & Soul", mark: "B&S" },
+  { name: "Hullabaloo! Children’s Arts Festival", mark: "H!" },
+  { name: "Fighting Words", mark: "FW" },
+];
+
 function BrandLogo({ className = "" }) {
   return (
     <img
@@ -480,6 +490,27 @@ export function App() {
               experience is built to help people laugh, participate and connect.
             </p>
           </div>
+        </section>
+
+        <section className="partners-section" aria-labelledby="partners-title">
+          <div className="partners-heading">
+            <p className="section-kicker">Great company</p>
+            <h2 id="partners-title">Our Friends and Partners</h2>
+            <p>
+              Proud to have brought memorable experiences to life with organisations,
+              festivals and creative communities across Ireland.
+            </p>
+          </div>
+          <ul className="partners-grid" aria-label="Punch Lion friends and partners">
+            {partners.map((partner) => (
+              <li className="partner-card" key={partner.name}>
+                <span className="partner-mark" aria-hidden="true">
+                  {partner.mark}
+                </span>
+                <strong>{partner.name}</strong>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section
