@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  ArrowLeft,
   ArrowRight,
   ArrowSquareOut,
   FacebookLogo,
@@ -9,8 +8,6 @@ import {
   List,
   MicrophoneStage,
   PaperPlaneTilt,
-  Pause,
-  Play,
   Quotes,
   Smiley,
   UsersThree,
@@ -86,35 +83,15 @@ const programmes = [
   },
 ];
 
-const carouselSlides = [
-  {
-    image: assetUrl("hero-live-event.webp"),
-    alt: "Families gathered outdoors for a Punch Lion live comedy event.",
-    eyebrow: "Live events",
-    title: "Big moments shared together",
-    position: "50% 42%",
-    width: 480,
-    height: 320,
-  },
-  {
-    image: assetUrl("kids-comedy.webp"),
-    alt: "A child laughing during a Punch Lion comedy event.",
-    eyebrow: "Kids comedy",
-    title: "Laughter for every generation",
-    position: "50% 44%",
-    width: 640,
-    height: 427,
-  },
-  {
-    image: assetUrl("workshop-group.webp"),
-    alt: "A group taking part in a lively Punch Lion workshop.",
-    eyebrow: "Creative workshops",
-    title: "Confidence built through play",
-    position: "50% 48%",
-    width: 570,
-    height: 640,
-  },
-];
+const actionFeature = {
+  image: assetUrl("workshop-group.webp"),
+  alt: "A group taking part in a lively Punch Lion workshop.",
+  eyebrow: "Creative workshops",
+  title: "Confidence built through play",
+  position: "50% 48%",
+  width: 570,
+  height: 640,
+};
 
 const testimonials = [
   {
@@ -184,9 +161,6 @@ function BrandLogo({ className = "" }) {
 
 export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [carouselPaused, setCarouselPaused] = useState(false);
-  const [carouselEngaged, setCarouselEngaged] = useState(false);
 
   useEffect(() => {
     const closeOnEscape = (event) => {
@@ -233,29 +207,7 @@ export function App() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion || carouselPaused || carouselEngaged) return undefined;
-
-    const timer = window.setInterval(() => {
-      setCarouselIndex((current) => (current + 1) % carouselSlides.length);
-    }, 5500);
-
-    return () => window.clearInterval(timer);
-  }, [carouselEngaged, carouselPaused]);
-
   const closeMenu = () => setMenuOpen(false);
-  const previousSlide = () => {
-    setCarouselIndex((current) =>
-      current === 0 ? carouselSlides.length - 1 : current - 1,
-    );
-  };
-  const nextSlide = () => {
-    setCarouselIndex((current) => (current + 1) % carouselSlides.length);
-  };
   const handleContactSubmit = (event) => {
     event.preventDefault();
 
@@ -272,8 +224,6 @@ export function App() {
 
     window.location.href = `mailto:hello@punchlion.ie?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
-  const currentSlide = carouselSlides[carouselIndex];
-
   return (
     <>
       <a className="skip-link" href="#main-content">
@@ -395,76 +345,31 @@ export function App() {
         </section>
 
         <section
-          className="carousel-section"
+          className="action-section"
           id="in-action"
-          aria-labelledby="carousel-title"
+          aria-labelledby="in-action-title"
         >
-          <div className="carousel-heading">
+          <div className="action-heading">
             <p className="section-kicker">Punch Lion in action</p>
-            <h2 id="carousel-title">See what we bring to life</h2>
+            <h2 id="in-action-title">See what we bring to life</h2>
           </div>
 
-          <div
-            className="carousel-shell"
-            role="region"
-            aria-roledescription="carousel"
-            aria-label="Punch Lion experiences"
-            onMouseEnter={() => setCarouselEngaged(true)}
-            onMouseLeave={() => setCarouselEngaged(false)}
-            onFocusCapture={() => setCarouselEngaged(true)}
-            onBlurCapture={() => setCarouselEngaged(false)}
-          >
-            <figure className="carousel-slide" key={currentSlide.image}>
+          <div className="action-feature-shell">
+            <figure className="action-feature image-reveal">
               <img
-                src={currentSlide.image}
-                alt={currentSlide.alt}
-                style={{ objectPosition: currentSlide.position }}
-                width={currentSlide.width}
-                height={currentSlide.height}
+                src={actionFeature.image}
+                alt={actionFeature.alt}
+                style={{ objectPosition: actionFeature.position }}
+                width={actionFeature.width}
+                height={actionFeature.height}
+                loading="lazy"
+                decoding="async"
               />
               <figcaption>
-                <span>{currentSlide.eyebrow}</span>
-                <strong>{currentSlide.title}</strong>
+                <span>{actionFeature.eyebrow}</span>
+                <strong>{actionFeature.title}</strong>
               </figcaption>
             </figure>
-
-            <div className="carousel-controls">
-              <button type="button" onClick={previousSlide} aria-label="Show previous image">
-                <ArrowLeft weight="bold" aria-hidden="true" />
-              </button>
-              <span aria-live="off">
-                {carouselIndex + 1} / {carouselSlides.length}
-              </span>
-              <button type="button" onClick={nextSlide} aria-label="Show next image">
-                <ArrowRight weight="bold" aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                className="carousel-playback"
-                onClick={() => setCarouselPaused((current) => !current)}
-                aria-label={carouselPaused ? "Play automatic slideshow" : "Pause automatic slideshow"}
-                aria-pressed={carouselPaused}
-              >
-                {carouselPaused ? (
-                  <Play weight="fill" aria-hidden="true" />
-                ) : (
-                  <Pause weight="fill" aria-hidden="true" />
-                )}
-              </button>
-            </div>
-
-            <div className="carousel-dots" aria-label="Choose an image">
-              {carouselSlides.map((slide, index) => (
-                <button
-                  type="button"
-                  className={index === carouselIndex ? "is-active" : ""}
-                  onClick={() => setCarouselIndex(index)}
-                  aria-label={`Show image ${index + 1}: ${slide.eyebrow}`}
-                  aria-current={index === carouselIndex ? "true" : undefined}
-                  key={slide.image}
-                />
-              ))}
-            </div>
           </div>
         </section>
 
