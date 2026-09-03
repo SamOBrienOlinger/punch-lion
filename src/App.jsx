@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  ArrowLeft,
   ArrowRight,
   ArrowSquareOut,
   FacebookLogo,
@@ -156,6 +157,52 @@ function BrandLogo({ className = "" }) {
       width="682"
       height="577"
     />
+  );
+}
+
+function scrollRail(railId, direction) {
+  const rail = document.getElementById(railId);
+  if (!rail) return;
+
+  const firstCard = rail.firstElementChild;
+  const railStyles = window.getComputedStyle(rail);
+  const gap = Number.parseFloat(railStyles.columnGap || railStyles.gap) || 0;
+  const distance = firstCard
+    ? firstCard.getBoundingClientRect().width + gap
+    : rail.clientWidth * 0.8;
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  rail.scrollBy({
+    left: distance * direction,
+    behavior: prefersReducedMotion ? "auto" : "smooth",
+  });
+}
+
+function RailControls({ railId, label }) {
+  return (
+    <div className="rail-toolbar">
+      <span>Swipe or scroll to explore</span>
+      <div className="rail-controls" aria-label={label}>
+        <button
+          type="button"
+          onClick={() => scrollRail(railId, -1)}
+          aria-label="Scroll back"
+          aria-controls={railId}
+        >
+          <ArrowLeft weight="bold" aria-hidden="true" />
+        </button>
+        <button
+          type="button"
+          onClick={() => scrollRail(railId, 1)}
+          aria-label="Scroll forward"
+          aria-controls={railId}
+        >
+          <ArrowRight weight="bold" aria-hidden="true" />
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -477,7 +524,13 @@ export function App() {
               festivals and creative communities across Ireland.
             </p>
           </div>
-          <ul className="partners-grid" aria-label="Punch Lion friends and partners">
+          <RailControls railId="partners-rail" label="Friends and partners navigation" />
+          <ul
+            className="partners-grid horizontal-rail"
+            id="partners-rail"
+            aria-label="Punch Lion friends and partners"
+            tabIndex="0"
+          >
             {partners.map((partner) => (
               <li key={partner.name}>
                 <a
@@ -509,7 +562,14 @@ export function App() {
             <p className="section-kicker">Testimonials</p>
             <h2 id="testimonials-title">What people remember</h2>
           </div>
-          <div className="testimonial-grid">
+          <RailControls railId="testimonials-rail" label="Testimonials navigation" />
+          <div
+            className="testimonial-grid horizontal-rail"
+            id="testimonials-rail"
+            role="region"
+            aria-label="Punch Lion testimonials"
+            tabIndex="0"
+          >
             {testimonials.map((testimonial) => (
               <article className="testimonial-card" key={testimonial.name}>
                 <span className="quote-mark" aria-hidden="true">
