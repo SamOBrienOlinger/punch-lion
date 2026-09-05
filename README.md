@@ -6,7 +6,7 @@ A responsive events website presenting Punch Lion’s live experiences, children
 
 [Visit the website](https://samobrienolinger.github.io/punch-lion/) · [Getting started](#getting-started) · [Repository guide](#repository-guide) · [Checks](#checks-and-review) · [Credits](#credits-and-reuse)
 
-<img src="public/assets/punch-lion-logo.png" alt="Punch Lion brand logo" width="280">
+<img src="public/assets/punch-lion-logo.jpeg" alt="Punch Lion brand logo" width="280">
 
 ## What you can explore
 
@@ -32,7 +32,7 @@ npm ci
 npm run dev
 ```
 
-Open the local address printed by the development server. Create React App normally uses [localhost:3000](http://localhost:3000); Vite prints its selected port.
+Open the local address printed by the Vite development server.
 
 ## Repository guide
 
