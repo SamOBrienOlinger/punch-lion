@@ -25,35 +25,7 @@ A responsive events website presenting Punch Lion’s live experiences, children
 
 The React page renders separate collections of programme cards, partner logos and testimonials. Each programme card has its own image and alt text. The site renders testimonials as a standalone collection. [Content definitions and components](src/App.jsx)
 
-```mermaid
-erDiagram
-    accTitle: Punch Lion content model
-    accDescr: The Punch Lion page presents programme cards, partners and testimonials. Each programme card displays a photo.
-    Site ||--|{ "Programme Card" : presents
-    Site ||--|{ Partner : credits
-    Site ||--|{ Testimonial : quotes
-    "Programme Card" ||--|| Photo : displays
-
-    "Programme Card" {
-        string id
-        string title
-        string linkLabel
-    }
-    Photo {
-        url image
-        string alt
-    }
-    Partner {
-        string name
-        path logo
-        url href
-    }
-    Testimonial {
-        string name
-        string role
-        string quote
-    }
-```
+[![The Punch Lion page presents programme cards, partners and testimonials. Each programme card displays a photo.](docs/diagrams/punch-lion-content-model.svg)](docs/diagrams/punch-lion-content-model.svg)
 
 ## Getting started
 
