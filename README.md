@@ -4,7 +4,7 @@ A responsive events website presenting Punch Lion’s live experiences, children
 
 **React · JavaScript · Vite**
 
-[Visit the website](https://samobrienolinger.github.io/punch-lion/) · [Getting started](#getting-started) · [Repository guide](#repository-guide) · [Checks](#checks-and-review) · [Credits](#credits-and-reuse)
+[Visit the website](https://samobrienolinger.github.io/punch-lion/) · [Getting started](#getting-started) · [Data model](#entity-relationship-diagram) · [Repository guide](#repository-guide) · [Checks](#checks-and-review) · [Credits](#credits-and-reuse)
 
 <img src="public/assets/punch-lion-logo.jpeg" alt="Punch Lion brand logo" width="280">
 
@@ -20,6 +20,40 @@ A responsive events website presenting Punch Lion’s live experiences, children
 1. Browse the event, children’s comedy, workshop or corporate programme sections.
 2. Explore testimonials and partner content.
 3. Use the contact links to enquire about an experience.
+
+## Entity relationship diagram
+
+The React page renders separate collections of programme cards, partner logos and testimonials. Each programme card has its own image and alt text. The site renders testimonials as a standalone collection. [Content definitions and components](src/App.jsx)
+
+```mermaid
+erDiagram
+    accTitle: Punch Lion content model
+    accDescr: The Punch Lion page presents programme cards, partners and testimonials. Each programme card displays a photo.
+    Site ||--|{ "Programme Card" : presents
+    Site ||--|{ Partner : credits
+    Site ||--|{ Testimonial : quotes
+    "Programme Card" ||--|| Photo : displays
+
+    "Programme Card" {
+        string id
+        string title
+        string linkLabel
+    }
+    Photo {
+        url image
+        string alt
+    }
+    Partner {
+        string name
+        path logo
+        url href
+    }
+    Testimonial {
+        string name
+        string role
+        string quote
+    }
+```
 
 ## Getting started
 
